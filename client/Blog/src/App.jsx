@@ -1,15 +1,17 @@
 import About from "./pages/About"
-import { BrowserRouter, Routes, Route} from react-router-dom
+import { BrowserRouter, Routes, Route} from 'react-router-dom'
 import Home from "./pages/Home"
 import Project from "./pages/Project"
 import SignUp from "./pages/SignUp"
 import Signin from "./pages/signin"
+import Nav from "./components/Nav"
 
 
 function App() {
 
   return (
     <BrowserRouter>
+      <Nav />
       <Routes>
         <Route element={Home} path={'/'} />
         <Route element={About} path={'/about'} />
