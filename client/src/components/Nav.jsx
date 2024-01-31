@@ -6,8 +6,8 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { FaMoon } from 'react-icons/fa'
 
 export default function Nav() {
-const path = useLocation().pathname
-console.log(path);
+  const path = useLocation().pathname;
+
   return (
     <Navbar className='border-b-2'>
         <Link to="/" className='self-center whitespace-nowrap text-sm sm:text-xl font-semibold dark:text-white'>
