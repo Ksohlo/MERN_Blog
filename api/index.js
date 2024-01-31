@@ -24,3 +24,15 @@ app.get('/api/test', (req, res) => {
 })
 app.use('/api/auth', authRoutes);
 app.use('/api/user', userRoutes);
+
+
+
+app.use((error, req, res, next)=>{
+    const errorStatus = error.status || 500;
+    const errorMessage = error.message || "Something went wrong";
+    res.status(errorStatus).json({
+        success:false, 
+        statusCode : errorStatus, 
+        message : errorMessage,
+    });
+});
