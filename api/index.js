@@ -27,6 +27,7 @@ app.use('/api/user', userRoutes);
 
 
 
+// -----MIDDLEWARE
 app.use((error, req, res, next)=>{
     const errorStatus = error.status || 500;
     const errorMessage = error.message || "Something went wrong";

@@ -6,6 +6,7 @@ import SignUp from "./pages/SignUp"
 import Nav from "./components/Nav"
 import Signin from './pages/Signin'
 import Dashboard from './pages/Dashboard'
+import FooterCom from './components/FooterCom'
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/signup" element={ <SignUp /> } />
         <Route path="/signin" element={ <Signin/> } />
       </Routes>
+      <FooterCom />
     </BrowserRouter>
   )
 }
