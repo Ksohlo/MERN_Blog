@@ -1,7 +1,8 @@
 import user from "../models/user.model.js";
 import bcryptjs from 'bcryptjs'
 import dotenv from 'dotenv'
-
+import pkg from 'jsonwebtoken';
+const Jwt = pkg;
 
 dotenv.config();
 
@@ -40,7 +41,7 @@ export const signin = async (req, res, next) => {
     try {
         const validUser = await user.findOne({email});
         if (!validUser) {
-            next({message: 'User not found'});
+            return next({message: 'User not found'});
         }
 
         const validPassword = bcryptjs.compareSync(password, validUser.password);
@@ -48,10 +49,11 @@ export const signin = async (req, res, next) => {
             return next({message: 'Wrong password'});
         }
 
-        const token = Jwt.sign(
-            { id:validUser._id }, 
-            process.env.JWT_SECRET);
-        res.status(200).cookie('access_token', token, { httpOnly:true }).json(validUser);
+        const token = Jwt.sign({ id:validUser._id }, process.env.JWT_SECRET);
+
+        const { password: pass, ...others } = validUser._doc;
+
+        res.status(200).cookie('access_token', token, { httpOnly:true }).json(others);
 
     } catch (error) {
         next(error);
